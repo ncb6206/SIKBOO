@@ -107,14 +107,13 @@ const CreateGroupBuying = () => {
 
           <div>
             <label className="mb-2 block text-sm font-medium text-gray-700">마감 시간</label>
-            <select className="w-full rounded-lg border border-gray-200 px-4 py-3 focus:ring-2 focus:ring-[#5f0080] focus:outline-none">
-              <option>1시간 후</option>
-              <option>3시간 후</option>
-              <option>6시간 후</option>
-              <option>12시간 후</option>
-              <option>1일 후</option>
-              <option>2일 후</option>
-            </select>
+            <input
+              type="datetime-local"
+              className="w-full rounded-lg border border-gray-200 px-4 py-3 focus:ring-2 focus:ring-[#5f0080] focus:outline-none"
+            />
+            <p className="mt-1 text-xs text-gray-500">
+              마감 시간 이후에는 새로운 참여가 불가능합니다
+            </p>
           </div>
 
           <div>

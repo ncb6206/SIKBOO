@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { MapPin, Package, MessageCircle, Users, Clock } from 'lucide-react';
-import { ingredients } from '../../data/ingredients';
+import { ingredients } from '@/data/ingredients';
+import { getTimeRemaining } from '@/lib/dateUtils';
 
 const GroupBuyingDetail = () => {
   const { id } = useParams();
@@ -72,7 +73,9 @@ const GroupBuyingDetail = () => {
                 <Clock size={14} />
                 마감까지
               </div>
-              <div className="text-lg font-bold text-orange-600">{item.deadline}</div>
+              <div className="text-lg font-bold text-orange-600">
+                {getTimeRemaining(item.deadlineDate)}
+              </div>
             </div>
           </div>
 

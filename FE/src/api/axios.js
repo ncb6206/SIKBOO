@@ -20,7 +20,7 @@ apiClient.interceptors.request.use(
   },
   (error) => {
     return Promise.reject(error);
-  }
+  },
 );
 
 // Response interceptor
@@ -36,7 +36,7 @@ apiClient.interceptors.response.use(
       window.location.href = '/login';
     }
     return Promise.reject(error);
-  }
+  },
 );
 
 export default apiClient;

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MapPin, Users, Clock, Plus, Search, ShoppingBag } from 'lucide-react';
 import { ingredients as initialItems, categories } from '../../data/ingredients';
+import { getTimeRemaining } from '../../lib/dateUtils';
 
 const GroupBuying = () => {
   const navigate = useNavigate();
@@ -161,7 +162,7 @@ const GroupBuying = () => {
                       </div>
                       <div className="flex items-center gap-1 text-[#666666]">
                         <Clock size={13} className="text-[#ff6b6b]" />
-                        <span>{item.deadline}</span>
+                        <span>마감까지 {getTimeRemaining(item.deadlineDate)}</span>
                       </div>
                     </div>
 
