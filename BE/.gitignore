@@ -18,6 +18,9 @@ bin/
 !**/src/test/**/bin/
 application.properties
 
+### Environment Variables ###
+.env
+
 ### IntelliJ IDEA ###
 .idea
 *.iws

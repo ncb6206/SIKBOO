@@ -34,7 +34,11 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-websocket'
 	implementation 'org.springframework.cloud:spring-cloud-starter-circuitbreaker-resilience4j'
-	implementation 'org.postgresql:postgresql:42.7.2'
+	
+	// Hibernate Spatial for PostGIS
+	implementation 'org.hibernate.orm:hibernate-spatial'
+	implementation 'net.postgis:postgis-jdbc:2024.1.0'
+	
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'org.postgresql:postgresql'
