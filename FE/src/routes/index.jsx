@@ -2,6 +2,7 @@ import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { MainLayout } from '@/components/Layout';
 import Ingredients from '@/pages/Ingredient/Ingredients';
 import Recipes from '@/pages/Recipe/Recipes';
+import RecipeSessionDetail from '@/pages/Recipe/RecipeSessionDetail';
 import GroupBuying from '@/pages/GroupBuying/GroupBuying';
 import GroupBuyingDetail from '@/pages/GroupBuying/GroupBuyingDetail';
 import GroupBuyingChat from '@/pages/GroupBuying/GroupBuyingChat';
@@ -9,22 +10,25 @@ import CreateGroupBuying from '@/pages/GroupBuying/CreateGroupBuying';
 import MyPage from '@/pages/MyPage/MyPage';
 import Login from '@/pages/Auth/Login';
 import Signup from '@/pages/Auth/Signup';
+import OAuth2Success from '@/pages/Auth/OAuth2Success';
+import Onboarding from '@/pages/Auth/Onboarding';
 
 const AppRoutes = () => {
   const location = useLocation();
 
   // 인증 페이지 여부 확인
-  const isAuthPage = location.pathname === '/login' || location.pathname === '/signup';
+  const isAuthPage =
+    location.pathname === '/login' ||
+    location.pathname === '/signup' ||
+    location.pathname === '/oauth2/success' ||
+    location.pathname === '/onboarding';
 
   // 페이지별 헤더 설정
   const getHeaderConfig = () => {
     if (location.pathname === '/group-buying/create') {
       return { title: '식재료 공동구매 만들기', showBack: true, hideNav: false };
     }
-    if (
-      location.pathname.startsWith('/group-buying/detail/') &&
-      location.pathname.endsWith('/chat')
-    ) {
+    if (location.pathname.startsWith('/group-buying/') && location.pathname.endsWith('/chat')) {
       return { title: '채팅', showBack: true, hideNav: true };
     }
     if (location.pathname.startsWith('/group-buying/detail/')) {
@@ -35,6 +39,9 @@ const AppRoutes = () => {
     }
     if (location.pathname.startsWith('/ingredients')) {
       return { title: '내재료', showBack: false, hideNav: false };
+    }
+    if (location.pathname.startsWith('/recipes/sessions/')) {
+      return { title: '레시피 상세', showBack: true, hideNav: false };
     }
     if (location.pathname.startsWith('/recipes')) {
       return { title: '레시피', showBack: false, hideNav: false };
@@ -53,6 +60,8 @@ const AppRoutes = () => {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/oauth2/success" element={<OAuth2Success />} />
+        <Route path="/onboarding" element={<Onboarding />} /> {/* ⬅️ 추가 */}
       </Routes>
     );
   }
@@ -67,9 +76,10 @@ const AppRoutes = () => {
         <Route path="/" element={<Navigate to="/login" replace />} />
         <Route path="/ingredients" element={<Ingredients />} />
         <Route path="/recipes" element={<Recipes />} />
+        <Route path="/recipes/sessions/:id" element={<RecipeSessionDetail />} />
         <Route path="/group-buying" element={<GroupBuying />} />
         <Route path="/group-buying/detail/:id" element={<GroupBuyingDetail />} />
-        <Route path="/group-buying/detail/:id/chat" element={<GroupBuyingChat />} />
+        <Route path="/group-buying/:id/chat" element={<GroupBuyingChat />} />
         <Route path="/group-buying/create" element={<CreateGroupBuying />} />
         <Route path="/mypage" element={<MyPage />} />
       </Routes>
