@@ -21,5 +21,5 @@ jobs:
 
       - name: Add Forked Repo and Push Changes
         run: |
-          git remote add forked https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/ncb6206/front.git
-          git push forked main  # push로 최신 상태 유지
+          git remote add forked https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/ncb6206/SIKBOO.git
+          git push -f forked main  # push로 최신 상태 유지
